@@ -1,0 +1,54 @@
+{
+  "title": "KDE Connect",
+  "status": {
+    "connected": "Connected",
+    "unreachable": "Unreachable",
+    "charging": "Charging",
+    "battery": "Battery"
+  },
+  "tooltips": {
+    "no-device": "No phone connected\nClick to configure",
+    "unreachable": "{name} (unreachable)",
+    "charging": "{name} - {level}% (charging)",
+    "battery": "{name} - {level}%",
+    "close": "Close",
+    "widget-settings": "Widget settings"
+  },
+  "actions": {
+    "ping": "Ping",
+    "ring": "Find Phone",
+    "refresh": "Refresh",
+    "refresh-devices": "Refresh Devices"
+  },
+  "panel": {
+    "actions": "Quick Actions",
+    "devices": "Devices",
+    "no-device": "No phone connected",
+    "no-device-hint": "Make sure KDE Connect is running and your phone is paired"
+  },
+  "settings": {
+    "description": "Configure KDE Connect phone integration.",
+    "device": "Device",
+    "preferred-device": "Preferred Device",
+    "preferred-device-hint": "Select which device to show in the bar widget.",
+    "no-devices": "No devices found",
+    "auto": "(Auto - first available)",
+    "display": "Display",
+    "show-percent": "Show Battery Percentage",
+    "show-percent-hint": "Show the battery percentage next to the icon in the bar.",
+    "low-battery": "Low Battery Warning",
+    "low-battery-hint": "Show warning color when battery is below this level.",
+    "polling": "Polling",
+    "poll-interval": "Update Interval",
+    "poll-interval-hint": "How often to check the device status.",
+    "interval": {
+      "10s": "10 seconds",
+      "30s": "30 seconds",
+      "1m": "1 minute",
+      "2m": "2 minutes",
+      "5m": "5 minutes"
+    },
+    "info": "Information",
+    "info-text": "This plugin requires KDE Connect to be installed and running. Make sure your phone is paired and the KDE Connect app is running on your device."
+  }
+}

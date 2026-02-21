@@ -1,0 +1,26 @@
+{
+  "id": "kdeconnect",
+  "name": "KDE Connect",
+  "version": "0.1.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "stonelukas",
+  "license": "MIT",
+  "description": "Show connected phone battery and quick actions via KDE Connect",
+  "entryPoints": {
+    "main": "Main.qml",
+    "panel": "Panel.qml",
+    "barWidget": "BarWidget.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "pollIntervalMs": 30000,
+      "preferredDevice": "",
+      "showBatteryPercent": true,
+      "lowBatteryWarning": 20
+    }
+  }
+}
