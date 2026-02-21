@@ -1,0 +1,24 @@
+{
+  "id": "arctis",
+  "name": "Arctis Headset",
+  "version": "0.1.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "stonelukas",
+  "license": "MIT",
+  "description": "Monitor SteelSeries Arctis headset status via arctis-manager",
+  "entryPoints": {
+    "main": "Main.qml",
+    "panel": "Panel.qml",
+    "barWidget": "BarWidget.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "pollIntervalMs": 30000,
+      "showInBar": true
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "OpenRazer",
+  "status": {
+    "charging": "Charging",
+    "battery": "Battery"
+  },
+  "tooltips": {
+    "no-device": "No Razer device connected",
+    "close": "Close",
+    "widget-settings": "Widget settings"
+  },
+  "actions": {
+    "refresh": "Refresh"
+  },
+  "effects": {
+    "spectrum": "Spectrum",
+    "static": "Static (Green)",
+    "breath": "Breathing",
+    "off": "Lights Off"
+  },
+  "panel": {
+    "brightness": "Brightness",
+    "effects": "Lighting Effects",
+    "info": "Device Info",
+    "type": "Type:",
+    "max-dpi": "Max DPI:",
+    "no-device": "No Razer device found",
+    "no-device-hint": "Make sure OpenRazer is installed and your device is connected"
+  },
+  "settings": {
+    "description": "Configure OpenRazer device monitoring and control.",
+    "display": "Display",
+    "show-percent": "Show Battery Percentage",
+    "show-percent-hint": "Show the battery percentage next to the icon in the bar.",
+    "low-battery": "Low Battery Warning",
+    "low-battery-hint": "Show warning color when battery is below this level.",
+    "polling": "Polling",
+    "poll-interval": "Update Interval",
+    "poll-interval-hint": "How often to check device status.",
+    "interval": {
+      "30s": "30 seconds",
+      "1m": "1 minute",
+      "2m": "2 minutes",
+      "5m": "5 minutes"
+    },
+    "info": "Information",
+    "info-text": "This plugin requires OpenRazer to be installed. Visit openrazer.github.io for installation instructions."
+  }
+}

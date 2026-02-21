@@ -1,0 +1,16 @@
+{
+  "dialog": {
+    "title": "Authentication Required",
+    "cancel": "Cancel",
+    "authenticate": "Authenticate",
+    "password-placeholder": "Password"
+  },
+  "error": {
+    "auth-failed": "Authentication failed. Please try again.",
+    "timeout": "Request timed out. Please try again."
+  },
+  "settings": {
+    "animation-duration": "Animation Duration",
+    "animation-duration-desc": "Duration of dialog entrance and exit animations (ms)"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "custom-polkit-agent",
+  "name": "Polkit Authentication (Custom)",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "Custom",
+  "license": "MIT",
+  "description": "Custom system authentication dialog using Quickshell.Services.Polkit (no daemon needed).",
+  "tags": ["System", "Security"],
+  "entryPoints": {
+    "main": "Main.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "animationDuration": 200
+    }
+  }
+}

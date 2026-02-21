@@ -1,0 +1,82 @@
+{
+  "context": {
+    "history": "History",
+    "recognize": "Recognize Song",
+    "settings": "Settings"
+  },
+  "bar": {
+    "tooltip": {
+      "idle": "Click to identify song",
+      "listening": "Listening...",
+      "processing": "Recognizing...",
+      "success": "Song recognized",
+      "error": "Recognition failed"
+    }
+  },
+  "panel": {
+    "header": {
+      "title": "Music History",
+      "songs": "songs",
+      "clear": "Clear history"
+    },
+    "empty": {
+      "title": "No songs recognized yet",
+      "hint": "Click the bar widget to identify a song"
+    },
+    "time": {
+      "now": "Just now",
+      "mins_ago": "m ago",
+      "hours_ago": "h ago",
+      "days_ago": "d ago"
+    },
+    "action": {
+      "lyrics": "Lyrics",
+      "delete": "Remove"
+    },
+    "button": {
+      "recognize": "Recognize Song",
+      "listening": "Listening...",
+      "processing": "Recognizing..."
+    }
+  },
+  "settings": {
+    "header": "Music Recognizer Settings",
+    "duration": {
+      "label": "Recording Duration",
+      "description": "How long to capture audio (longer = better recognition)"
+    },
+    "reset": {
+      "label": "Reset Delay",
+      "description": "Time before widget returns to idle after success/error"
+    },
+    "history": {
+      "label": "History Limit",
+      "description": "Maximum number of songs to keep in history",
+      "songs": "songs"
+    },
+    "notifications": {
+      "label": "Show Notifications",
+      "description": "Display toast when song is recognized"
+    },
+    "info": {
+      "title": "Requirements",
+      "content": "• PipeWire with pw-record\n• Python 3.10+\n• Internet connection"
+    }
+  },
+  "toast": {
+    "no_match": {
+      "title": "No Match",
+      "message": "Song not recognized"
+    },
+    "error": {
+      "title": "Recognition Failed"
+    }
+  },
+  "errors": {
+    "no_pipewire": "PipeWire not found",
+    "no_python310": "Python 3.10+ required",
+    "no_network": "Network error",
+    "capture_failed": "Audio capture failed",
+    "recognition_failed": "Recognition failed"
+  }
+}

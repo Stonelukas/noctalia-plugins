@@ -1,0 +1,27 @@
+{
+  "id": "music-recognizer",
+  "name": "Music Recognizer",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.7.5",
+  "author": "stonelukas",
+  "license": "MIT",
+  "description": "Identify songs playing in system audio using Shazam",
+  "tags": ["Bar", "Audio", "Music", "Panel"],
+  "entryPoints": {
+    "main": "Main.qml",
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "recordDurationSecs": 5,
+      "historyLimit": 50,
+      "showNotifications": true,
+      "resetDelaySecs": 5
+    }
+  }
+}

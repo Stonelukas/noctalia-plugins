@@ -1,0 +1,6 @@
+{
+  "recordDurationSecs": 10,
+  "historyLimit": 50,
+  "showNotifications": true,
+  "resetDelaySecs": 3
+}

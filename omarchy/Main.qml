@@ -1,0 +1,626 @@
+import QtQuick
+import Quickshell
+import Quickshell.Io
+import "ColorsConvert.js" as ColorsConvert
+import "ThemePipeline.js" as ThemePipeline
+import "SchemeCache.js" as SchemeCache
+import qs.Commons
+import qs.Services.Theming
+import qs.Services.UI
+
+Item {
+  id: root
+
+  visible: false
+
+  property var pluginApi: null
+
+  property bool available: false
+  property bool applying: false
+  property string themeName: ""
+  property var availableThemes: []
+  property bool suppressSettingsSignal: false
+  property bool pendingReloadApply: false
+  property var pendingAlacrittyColors: null
+
+  readonly property var defaultSettings: pluginApi?.manifest?.metadata?.defaultSettings || ({})
+  readonly property string schemeDisplayName: pluginApi?.manifest?.metadata?.schemeName || "Omarchy"
+  readonly property string schemeFolder: {
+    const baseDir = ColorSchemeService.downloadedSchemesDirectory || (Settings.configDir + "colorschemes");
+    const normalizedBase = baseDir.endsWith("/") ? baseDir.slice(0, -1) : baseDir;
+    const pluginId = pluginApi?.pluginId || "omarchy";
+    return normalizedBase + "/" + pluginId;
+  }
+  readonly property string schemeOutputPath: schemeFolder + "/" + schemeDisplayName + ".json"
+  readonly property string schemeOutputDir: schemeFolder
+  readonly property string previousWallpaperKey: "_prevUseWallpaperColors"
+  readonly property string previousSchemeKey: "_prevPredefinedScheme"
+
+  readonly property string omarchyConfigDir: {
+    const configured = pluginApi?.pluginSettings?.omarchyConfigDir;
+    if (configured && typeof configured === "string" && configured.trim() !== "") {
+      const value = expandHome(configured.trim());
+      return value.endsWith("/") ? value : value + "/";
+    }
+    const xdg = Quickshell.env("XDG_CONFIG_HOME");
+    const home = Quickshell.env("HOME");
+    if (xdg && xdg !== "")
+      return xdg + "/omarchy/";
+    if (home && home !== "")
+      return home + "/.config/omarchy/";
+    return "~/.config/omarchy/";
+  }
+
+  property string omarchyConfigPath: omarchyConfigDir + "current/theme/colors.toml"
+  readonly property string omarchyColorsTomlPath: omarchyConfigDir + "current/theme/colors.toml"
+  readonly property string omarchyAlacrittyTomlPath: omarchyConfigDir + "current/theme/alacritty.toml"
+  readonly property string omarchyHyprlandPath: omarchyConfigDir + "current/theme/hyprland.conf"
+  readonly property string omarchyThemePath: omarchyConfigDir + "current/theme"
+  readonly property string omarchyThemeNamePath: omarchyConfigDir + "current/theme.name"
+  readonly property string omarchyThemesDir: omarchyConfigDir + "themes"
+  readonly property string omarchyPath: {
+    const home = Quickshell.env("HOME");
+    if (home && home !== "")
+      return home + "/.local/share/omarchy";
+    return "~/.local/share/omarchy";
+  }
+
+  readonly property string themeSetCommand: {
+    const configured = pluginApi?.pluginSettings?.themeSetCommand;
+    if (configured && typeof configured === "string" && configured.trim() !== "") {
+      return expandHome(configured.trim());
+    }
+    const home = Quickshell.env("HOME");
+    if (home && home !== "")
+      return home + "/.local/share/omarchy/bin/omarchy-theme-set";
+    return "~/.local/share/omarchy/bin/omarchy-theme-set";
+  }
+
+  function expandHome(path) {
+    if (!path || typeof path !== "string")
+      return path;
+    if (!path.startsWith("~"))
+      return path;
+    const home = Quickshell.env("HOME") || "";
+    if (path === "~")
+      return home;
+    if (path.startsWith("~/"))
+      return home + path.slice(1);
+    return path;
+  }
+
+  function mutatePluginSettings(mutator) {
+    if (!pluginApi)
+      return null;
+    var settings = pluginApi.pluginSettings || {};
+    mutator(settings);
+    suppressSettingsSignal = true;
+    pluginApi.pluginSettings = settings;
+    suppressSettingsSignal = false;
+    return settings;
+  }
+
+  function rememberColorPreferences() {
+    if (!pluginApi)
+      return false;
+    var settings = pluginApi.pluginSettings || {};
+    if (settings[previousWallpaperKey] !== undefined)
+      return false;
+    mutatePluginSettings(s => {
+                           s[previousWallpaperKey] = Settings.data.colorSchemes.useWallpaperColors;
+                           s[previousSchemeKey] = Settings.data.colorSchemes.predefinedScheme || "";
+                         });
+    return true;
+  }
+
+  function restoreColorPreferences() {
+    if (!pluginApi)
+      return false;
+    var settings = pluginApi.pluginSettings || {};
+    if (settings[previousWallpaperKey] === undefined)
+      return false;
+    var prevWallpaper = settings[previousWallpaperKey];
+    var prevScheme = settings[previousSchemeKey] || "";
+    mutatePluginSettings(s => {
+                           delete s[previousWallpaperKey];
+                           delete s[previousSchemeKey];
+                         });
+
+    Settings.data.colorSchemes.useWallpaperColors = prevWallpaper;
+    Settings.data.colorSchemes.predefinedScheme = prevScheme || Settings.data.colorSchemes.predefinedScheme;
+
+    if (prevWallpaper) {
+      AppThemeService.generate();
+    } else if (Settings.data.colorSchemes.predefinedScheme) {
+      ColorSchemeService.applyScheme(Settings.data.colorSchemes.predefinedScheme);
+    }
+    return true;
+  }
+
+  function refresh() {
+    checkAvailability();
+    scanThemes();
+    refreshThemeName();
+  }
+
+  function checkAvailability() {
+    // Check for colors.toml or alacritty.toml, plus theme.name file
+    const colorsPath = omarchyColorsTomlPath.replace(/'/g, "'\\''");
+    const alacrittyPath = omarchyAlacrittyTomlPath.replace(/'/g, "'\\''");
+    const themeNamePath = omarchyThemeNamePath.replace(/'/g, "'\\''");
+    // Print which color file was found so we can resolve the path
+    availabilityProcess.command = ["bash", "-c",
+      "if [ -f '" + colorsPath + "' ] && [ -f '" + themeNamePath + "' ]; then echo colors; " +
+      "elif [ -f '" + alacrittyPath + "' ] && [ -f '" + themeNamePath + "' ]; then echo alacritty; " +
+      "else exit 1; fi"
+    ];
+    availabilityProcess.running = true;
+  }
+
+  function scanThemes() {
+    Logger.i("Omarchy", "Scanning themes using omarchy-theme-list");
+
+    // Just use omarchy-theme-list to get theme names
+    // No need to parse colors - omarchy-theme-set will handle that
+    const cmd = "omarchy-theme-list";
+    Logger.d("Omarchy", "Theme scan command:", cmd);
+    themesProcess.command = ["bash", "-c", cmd];
+    themesProcess.running = true;
+  }
+
+  function refreshThemeName() {
+    const themeNamePathEsc = omarchyThemeNamePath.replace(/'/g, "'\\''");
+    themeNameProcess.command = ["sh", "-c", "cat '" + themeNamePathEsc + "' 2>/dev/null || true"];
+    themeNameProcess.running = true;
+  }
+
+  function activate() {
+    if (!pluginApi)
+      return false;
+    rememberColorPreferences();
+    mutatePluginSettings(s => s.active = true);
+    pluginApi.saveSettings();
+    return applyCurrentTheme();
+  }
+
+  function deactivate() {
+    if (!pluginApi)
+      return;
+    mutatePluginSettings(s => s.active = false);
+    restoreColorPreferences();
+    pluginApi.saveSettings();
+  }
+
+  function applyCurrentTheme() {
+    if (!available) {
+      ToastService.showError(pluginApi?.tr("title") || "Omarchy", pluginApi?.tr("errors.missing-config") || "Omarchy config not found");
+      return false;
+    }
+
+    if (rememberColorPreferences()) {
+      pluginApi.saveSettings();
+    }
+    Settings.data.colorSchemes.useWallpaperColors = false;
+
+    applying = true;
+
+    const cacheCompatible = SchemeCache.isCompatible(ThemePipeline.PIPELINE_VERSION);
+    if (themeName && cacheCompatible) {
+      const cached = SchemeCache.getScheme(themeName);
+      if (cached?.palette && cached?.mode) {
+        Logger.i("Omarchy", "Using cached scheme for:", themeName);
+        const isDarkMode = cached.mode === "dark";
+        if (Settings.data.colorSchemes.darkMode !== isDarkMode) {
+          Logger.i("Omarchy", "Auto-switching Noctalia dark mode to:", isDarkMode);
+          Settings.data.colorSchemes.darkMode = isDarkMode;
+        }
+        writeSchemeFile(cached);
+        return true;
+      }
+    } else if (!cacheCompatible) {
+      Logger.w("Omarchy", "Scheme cache version mismatch; falling back to live conversion");
+    }
+
+    alacrittyReadProcess.command = ["cat", omarchyConfigPath];
+    alacrittyReadProcess.running = true;
+    return true;
+  }
+
+  function setTheme(nextThemeName) {
+    if (!nextThemeName)
+      return false;
+
+    themeSetProcess.command = [themeSetCommand, nextThemeName];
+    themeSetProcess.running = true;
+    return true;
+  }
+
+  function parseColorsToml(content) {
+    Logger.i("Omarchy", "Parsing colors.toml, content length:", content.length);
+    Logger.d("Omarchy", "First 500 chars:", content.slice(0, 500));
+
+    function extractColorFromLine(line) {
+      // Match both formats: color = "#ffffff" and color = "0xffffff"
+      const colorMatch = line.match(/=\s*["'](?:#|0x)?([a-fA-F0-9]{6,8})["']/);
+      if (colorMatch) {
+        const hex = colorMatch[1].toLowerCase();
+        return "#" + hex.slice(-6);
+      }
+      return null;
+    }
+
+    const colors = {};
+    const lines = content.split("\n");
+    Logger.d("Omarchy", "Parsing", lines.length, "lines");
+
+    for (var i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line || line.startsWith("#") || line.startsWith("["))
+        continue;
+
+      const color = extractColorFromLine(line);
+      if (color) {
+        // Extract the key name (everything before the =)
+        const keyMatch = line.match(/^([a-zA-Z0-9_]+)\s*=/);
+        if (keyMatch) {
+          const key = keyMatch[1];
+          colors[key] = color;
+          Logger.d("Omarchy", "Found", key, ":", color);
+        }
+      }
+    }
+
+    Logger.i("Omarchy", "Parsed colors:", Object.keys(colors).join(","));
+
+    if (!colors.background) {
+      Logger.e("Omarchy", "PARSE FAILED: No background color found");
+      Logger.d("Omarchy", "First 500 chars of content:", content.slice(0, 500));
+    }
+    if (!colors.foreground) {
+      Logger.e("Omarchy", "PARSE FAILED: No foreground color found");
+      Logger.d("Omarchy", "First 500 chars of content:", content.slice(0, 500));
+    }
+
+    if (!colors.background || !colors.foreground)
+      return null;
+    return colors;
+  }
+
+  function parseHyprlandConf(content) {
+    // Extract $activeBorderColor from hyprland.conf
+    // Formats: rgb(RRGGBB), rgba(RRGGBBAA), rgba(...) rgba(...) 45deg (gradient)
+    const lines = content.split("\n");
+    for (var i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith("$activeBorderColor")) {
+        // Extract the color value after the =
+        const match = line.match(/=\s*(.+)/);
+        if (!match) continue;
+
+        const value = match[1].trim();
+        // For gradients like "rgba(010401ee) rgba(518a51ee) 45deg", pick the second (brighter) color
+        // For simple colors like "rgb(c6d0f5)", use that
+        const colorMatches = value.match(/rgba?\(([a-fA-F0-9]{6,8})\)/g);
+        if (colorMatches && colorMatches.length > 0) {
+          // Use the last color in the list (usually brighter in gradients)
+          const lastColor = colorMatches[colorMatches.length - 1];
+          const hexMatch = lastColor.match(/rgba?\(([a-fA-F0-9]{6,8})\)/);
+          if (hexMatch) {
+            // Take first 6 chars for RGB, ignore alpha if present
+            const hex = hexMatch[1].slice(0, 6);
+            Logger.d("Omarchy", "Found Hyprland border color:", "#" + hex);
+            return "#" + hex.toLowerCase();
+          }
+        }
+      }
+    }
+    Logger.d("Omarchy", "No Hyprland border color found, using default");
+    return null;
+  }
+
+  function writeSchemeFile(result) {
+    const mode = result?.mode;
+    const scheme = result?.palette;
+    if (!scheme || !mode) {
+      Logger.e("Omarchy", "writeSchemeFile missing scheme data or mode");
+      applying = false;
+      return;
+    }
+
+    if (!schemeOutputPath || !schemeOutputDir) {
+      applying = false;
+      return;
+    }
+
+    // Include both dark and light keys (native schemes have both)
+    // Use the generated scheme for the active mode, copy it for the other mode as fallback
+    const wrappedScheme = {
+      "dark": scheme,
+      "light": scheme
+    };
+
+    const jsonContent = JSON.stringify(wrappedScheme, null, 2);
+    Logger.d("Omarchy", "Writing scheme JSON, length:", jsonContent.length);
+    const dirEsc = schemeOutputDir.replace(/'/g, "'\\''");
+    const outPathEsc = schemeOutputPath.replace(/'/g, "'\\''");
+    const writeCmd = "mkdir -p '" + dirEsc + "' && cat > '" + outPathEsc + "' << 'OMARCHY_SCHEME_EOF'\n" + jsonContent + "\nOMARCHY_SCHEME_EOF\n";
+    Logger.d("Omarchy", "Scheme write command:", writeCmd);
+    schemeWriteProcess.command = ["sh", "-c", writeCmd];
+    schemeWriteProcess.running = true;
+  }
+
+  Process {
+    id: availabilityProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function (code) {
+      available = (code === 0);
+      if (code === 0) {
+        const result = (stdout.text || "").trim();
+        if (result === "alacritty") {
+          omarchyConfigPath = omarchyAlacrittyTomlPath;
+        } else {
+          omarchyConfigPath = omarchyColorsTomlPath;
+        }
+        Logger.d("Omarchy", "Using color file:", omarchyConfigPath);
+      }
+    }
+  }
+
+  Process {
+    id: themesProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function (code) {
+      Logger.i("Omarchy", "themesProcess exited with code:", code);
+
+      if (code !== 0) {
+        Logger.e("Omarchy", "Theme scanning failed, exit code:", code);
+        availableThemes = [];
+        return;
+      }
+
+      const output = stdout.text || "";
+      Logger.d("Omarchy", "Theme scan output length:", output.length);
+
+      if (!output) {
+        Logger.w("Omarchy", "Theme scan returned empty output");
+        availableThemes = [];
+        return;
+      }
+
+      const themeNames = output.trim().split("\n").filter(name => name && name.trim());
+      Logger.i("Omarchy", "Found", themeNames.length, "themes:", themeNames.join(", "));
+
+      // Create theme entries with just names (colors parsed by omarchy-theme-set)
+      const themes = [];
+      for (var i = 0; i < themeNames.length; i++) {
+        themes.push({
+          "name": themeNames[i],
+          "colors": []  // No preview colors needed
+        });
+      }
+
+      Logger.i("Omarchy", "Theme list:", themes.length, "themes");
+      availableThemes = themes;
+    }
+  }
+
+  Process {
+    id: themeNameProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function (code) {
+      themeName = (stdout.text || "").trim();
+      if (root.pendingReloadApply) {
+        root.pendingReloadApply = false;
+        if (pluginApi?.pluginSettings?.active)
+          applyCurrentTheme();
+      }
+    }
+  }
+
+  Process {
+    id: themeSetProcess
+    running: false
+    onExited: function (code) {
+      if (code !== 0) {
+        ToastService.showError(pluginApi?.tr("title") || "Omarchy", pluginApi?.tr("errors.failed-theme-set") || "Failed to switch theme");
+        return;
+      }
+      root.pendingReloadApply = true;
+      refreshThemeName();
+    }
+  }
+
+  Process {
+    id: alacrittyReadProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function (code) {
+      Logger.i("Omarchy", "alacrittyReadProcess exited with code:", code);
+
+      if (code !== 0) {
+        applying = false;
+        Logger.e("Omarchy", "Failed to read alacritty config, exit code:", code);
+        ToastService.showError(pluginApi?.tr("title") || "Omarchy", pluginApi?.tr("errors.failed-read") || "Failed to read theme colors");
+        return;
+      }
+
+      const content = stdout.text || "";
+      Logger.d("Omarchy", "Read", content.length, "bytes from", omarchyConfigPath);
+
+      const parsed = parseColorsToml(content);
+      if (!parsed) {
+        applying = false;
+        Logger.e("Omarchy", "parseColorsToml returned null");
+        ToastService.showError(pluginApi?.tr("title") || "Omarchy", pluginApi?.tr("errors.failed-read") || "Failed to read theme colors");
+        return;
+      }
+
+      Logger.i("Omarchy", "Successfully parsed theme colors, now reading Hyprland config");
+      pendingAlacrittyColors = parsed;
+      hyprlandReadProcess.command = ["cat", omarchyHyprlandPath];
+      hyprlandReadProcess.running = true;
+    }
+  }
+
+  Process {
+    id: hyprlandReadProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function (code) {
+      Logger.i("Omarchy", "hyprlandReadProcess exited with code:", code);
+
+      const parsed = pendingAlacrittyColors;
+      pendingAlacrittyColors = null;
+
+      if (!parsed) {
+        applying = false;
+        Logger.e("Omarchy", "No pending alacritty colors");
+        return;
+      }
+
+      // Parse Hyprland border color (optional - don't fail if missing)
+      if (code === 0) {
+        const content = stdout.text || "";
+        const borderColor = parseHyprlandConf(content);
+        if (borderColor) {
+          parsed.hyprlandBorder = borderColor;
+          Logger.i("Omarchy", "Using Hyprland border color:", borderColor);
+        }
+      } else {
+        Logger.w("Omarchy", "Could not read hyprland.conf, using default border color");
+      }
+
+      Logger.i("Omarchy", "Generating color scheme");
+      const schemeResult = ThemePipeline.generateScheme(parsed, ColorsConvert);
+      Logger.d("Omarchy", "Detected mode:", schemeResult.mode);
+
+      // Auto-sync dark mode setting
+      const isDarkMode = schemeResult.mode === "dark";
+      if (Settings.data.colorSchemes.darkMode !== isDarkMode) {
+        Logger.i("Omarchy", "Auto-switching Noctalia dark mode to:", isDarkMode);
+        Settings.data.colorSchemes.darkMode = isDarkMode;
+      }
+      writeSchemeFile(schemeResult);
+    }
+  }
+
+  Process {
+    id: schemeWriteProcess
+    running: false
+    onExited: function (code) {
+      Logger.i("Omarchy", "schemeWriteProcess exited with code:", code);
+      applying = false;
+      if (code !== 0) {
+        Logger.e("Omarchy", "Failed to write scheme file, exit code:", code);
+        ToastService.showError(pluginApi?.tr("title") || "Omarchy", pluginApi?.tr("errors.failed-apply") || "Failed to apply scheme");
+        return;
+      }
+
+      Logger.i("Omarchy", "Scheme file written successfully to:", schemeOutputPath);
+      // Trigger scheme application with a small delay
+      applyDelayTimer.start();
+    }
+  }
+
+  Timer {
+    id: applyDelayTimer
+    interval: 100
+    repeat: false
+    onTriggered: {
+      Logger.d("Omarchy", "Applying color scheme after write delay");
+      ColorSchemeService.loadColorSchemes();
+      ColorSchemeService.applyScheme(schemeOutputPath);
+      Settings.data.colorSchemes.useWallpaperColors = false;
+      if (Settings.data.colorSchemes.predefinedScheme !== schemeDisplayName) {
+        Settings.data.colorSchemes.predefinedScheme = schemeDisplayName;
+      }
+    }
+  }
+
+  IpcHandler {
+    target: "omarchy"
+
+    function reload() {
+      root.pendingReloadApply = true;
+      root.refresh();
+    }
+
+    function toggle() {
+      if (pluginApi?.pluginSettings?.active) {
+        root.deactivate();
+      } else {
+        root.activate();
+      }
+    }
+
+    function setTheme(themeName: string) {
+      root.setTheme(themeName);
+    }
+
+    function cycleTheme() {
+      const themes = root.availableThemes || [];
+      if (themes.length === 0)
+        return;
+
+      let currentIndex = -1;
+      for (let i = 0; i < themes.length; i++) {
+        const entry = themes[i];
+        const name = typeof entry === "string" ? entry : entry.name;
+        if (name === root.themeName) {
+          currentIndex = i;
+          break;
+        }
+      }
+
+      const nextIndex = (currentIndex + 1) % themes.length;
+      const nextTheme = themes[nextIndex];
+      const nextName = typeof nextTheme === "string" ? nextTheme : nextTheme.name;
+      root.setTheme(nextName);
+    }
+
+    function randomTheme() {
+      const themes = root.availableThemes || [];
+      if (themes.length === 0)
+        return;
+
+      // Filter out the currently active theme
+      const otherThemes = themes.filter(theme => {
+        const name = typeof theme === "string" ? theme : theme.name;
+        return name !== root.themeName;
+      });
+
+      // If no other themes available, can't pick a different one
+      if (otherThemes.length === 0)
+        return;
+
+      const randomIndex = Math.floor(Math.random() * otherThemes.length);
+      const randomTheme = otherThemes[randomIndex];
+      const randomName = typeof randomTheme === "string" ? randomTheme : randomTheme.name;
+      root.setTheme(randomName);
+    }
+  }
+
+  Component.onCompleted: {
+    refresh();
+
+    // Auto-apply theme if plugin is active on startup
+    if (pluginApi?.pluginSettings?.active && available) {
+      Logger.i("Omarchy", "Auto-applying theme on startup");
+      Qt.callLater(applyCurrentTheme);
+    }
+  }
+
+  Connections {
+    target: pluginApi
+    function onPluginSettingsChanged() {
+      if (root.suppressSettingsSignal)
+        return;
+      if (pluginApi?.pluginSettings?.active) {
+        Qt.callLater(applyCurrentTheme);
+      }
+    }
+  }
+}

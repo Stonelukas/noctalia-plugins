@@ -1,0 +1,63 @@
+{
+  "title": "Lights",
+  "status": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "connecting": "Connecting...",
+    "all-off": "Off",
+    "lights-summary": "{on} of {total} on"
+  },
+  "actions": {
+    "turn-on": "Turn On",
+    "turn-off": "Turn Off",
+    "toggle": "Toggle",
+    "all-on": "All On",
+    "all-off": "All Off",
+    "refresh": "Refresh"
+  },
+  "settings": {
+    "description": "Connect to your Home Assistant instance to control lights.",
+    "url": "Home Assistant URL",
+    "url-placeholder": "http://homeassistant.local:8123",
+    "token": "Access Token",
+    "token-hint": "Create a Long-Lived Access Token at Profile > Security in Home Assistant.",
+    "favorite-light": "Favorite Light",
+    "favorite-light-hint": "Select the light to control by default and show in the bar widget.",
+    "visible-lights": "Visible Lights",
+    "visible-lights-hint": "Select which lights to show in the widget. Drag the handle to reorder. If none are selected, all lights will be shown.",
+    "select-all": "Select All",
+    "deselect-all": "Deselect All",
+    "selected": "selected",
+    "all-lights-visible": "All lights visible",
+    "no-lights": "No lights found",
+    "no-lights-connect": "Connect to Home Assistant to see available lights.",
+    "none": "(None)",
+    "test-connection": "Test Connection",
+    "connection-success": "Connected successfully",
+    "connection-failed": "Connection failed",
+    "show-only-on": {
+      "label": "Show only lights that are on",
+      "description": "When enabled, only lights that are currently on will be shown in the panel."
+    }
+  },
+  "errors": {
+    "no-url": "Please configure Home Assistant URL",
+    "no-token": "Please configure access token",
+    "auth-invalid": "Invalid access token",
+    "fetch-failed": "Failed to fetch lights",
+    "service-failed": "Service call failed"
+  },
+  "tooltips": {
+    "close": "Close",
+    "lights-on": "{count} of {total} lights on\nClick to control",
+    "all-off": "All lights off\nClick to control",
+    "disconnected": "Lights (disconnected)\nClick to configure",
+    "widget-settings": "Widget settings"
+  },
+  "panel": {
+    "not-connected": "Not connected to Home Assistant",
+    "settings-hint": "Configure connection in Settings > Plugins > Home Assistant Lights",
+    "no-lights": "No lights found",
+    "no-lights-hint": "Make sure you have light entities in Home Assistant"
+  }
+}

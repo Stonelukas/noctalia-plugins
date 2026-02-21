@@ -1,0 +1,42 @@
+{
+  "title": "Arctis Headset",
+  "tooltips": {
+    "disconnected": "Arctis headset not connected\nClick for settings",
+    "connected": "{name}\nClick for settings",
+    "close": "Close",
+    "widget-settings": "Widget settings"
+  },
+  "actions": {
+    "open-settings": "Open Arctis Settings",
+    "refresh": "Refresh"
+  },
+  "panel": {
+    "mic-settings": "Microphone Settings",
+    "mic-volume": "Volume",
+    "sidetone": "Sidetone",
+    "mic-gain": "Gain",
+    "auto-shutdown": "Auto Shutdown",
+    "never": "Never",
+    "minutes": "min",
+    "not-connected": "Headset not connected",
+    "not-connected-hint": "Make sure your Arctis headset is connected and arctis-manager is running"
+  },
+  "settings": {
+    "description": "Configure Arctis headset monitoring.",
+    "display": "Display",
+    "show-in-bar": "Show in Bar",
+    "show-in-bar-hint": "Show headset status icon in the bar.",
+    "polling": "Polling",
+    "poll-interval": "Update Interval",
+    "poll-interval-hint": "How often to check headset status.",
+    "interval": {
+      "10s": "10 seconds",
+      "30s": "30 seconds",
+      "1m": "1 minute",
+      "2m": "2 minutes",
+      "5m": "5 minutes"
+    },
+    "info": "Information",
+    "info-text": "This plugin requires arctis-manager to be installed and running. It monitors headset connection status and displays microphone settings."
+  }
+}

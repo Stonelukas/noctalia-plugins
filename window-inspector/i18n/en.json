@@ -1,0 +1,71 @@
+{
+  "title": "Window Inspector",
+  "no-window": "No window",
+  "tooltip": {
+    "no-window": "No active window"
+  },
+  "panel": {
+    "no-window": "No Active Window",
+    "no-window-hint": "Focus a window to inspect it"
+  },
+  "preview": {
+    "no-window": "No window selected",
+    "no-preview": "Preview unavailable"
+  },
+  "details": {
+    "address": "Address",
+    "position": "Position",
+    "size": "Size",
+    "workspace": "Workspace",
+    "monitor": "Monitor",
+    "pid": "PID",
+    "initial-class": "Class",
+    "initial-title": "Initial Title",
+    "floating": "Floating",
+    "pinned": "Pinned",
+    "fullscreen": "Fullscreen",
+    "xwayland": "XWayland"
+  },
+  "actions": {
+    "move-to-workspace": "Move to Workspace",
+    "special-workspaces": "Special Workspaces",
+    "float": "Float",
+    "tile": "Tile",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "close": "Close",
+    "kill": "Kill",
+    "refresh": "Refresh",
+    "copy": "Copy info"
+  },
+  "context": {
+    "refresh": "Refresh",
+    "settings": "Settings"
+  },
+  "settings": {
+    "description": "Configure the Window Inspector plugin. Shows details about the currently focused window.",
+    "info": "Information",
+    "info-text": "Window Inspector displays live preview and details of the active Hyprland window. Requires Hyprland compositor.",
+    "bar-widget": "Bar Widget",
+    "show-icon": "Show window icon",
+    "show-icon-hint": "Display the application icon in the bar widget",
+    "hide-when-empty": "Hide when no window",
+    "hide-when-empty-hint": "Hide the bar widget when no window is focused",
+    "max-width": "Maximum width",
+    "max-width-hint": "Maximum width of the bar widget in pixels (0 = no limit)",
+    "scrolling-mode": "Title scrolling",
+    "scrolling-mode-hint": "When to scroll long window titles",
+    "scroll": {
+      "always": "Always",
+      "hover": "On hover",
+      "never": "Never"
+    },
+    "panel": "Panel",
+    "show-preview": "Show live preview",
+    "show-preview-hint": "Display a live preview of the window using ScreencopyView",
+    "preview-height": "Preview height",
+    "preview-height-hint": "Height of the preview area in pixels",
+    "show-actions": "Show actions",
+    "show-actions-hint": "Display action buttons (move, float, pin, kill)"
+  }
+}

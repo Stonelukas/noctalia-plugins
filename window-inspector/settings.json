@@ -1,0 +1,9 @@
+{
+  "showIcon": true,
+  "maxWidth": 130,
+  "scrollingMode": "hover",
+  "hideWhenNoWindow": false,
+  "showPreview": true,
+  "showActions": true,
+  "previewHeight": 260
+}

@@ -1,0 +1,1349 @@
+{
+  "haUrl": "http://homeassistant.local:8123",
+  "haToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIwNjczYTZmNzcxNTg0NDM0YTA4OGMwMTE3NzY3ZjgzNyIsImlhdCI6MTc2OTE3NDIzNiwiZXhwIjoyMDg0NTM0MjM2fQ.6HXhhtKM79nbCeZIhI1TvQXlw796eNzM4TiSVa6LVLo",
+  "favoriteLight": "",
+  "selectedLights": [
+    "light.deckenlampe_lukas",
+    "light.schreibtisch_lukas",
+    "light.terrassenleuchten",
+    "light.terrasse",
+    "light.terrasse_schrankseite",
+    "light.terrasse_turseite",
+    "light.esstisch_indirekt_weiss",
+    "light.esstisch_indirekt_weiss_2",
+    "light.esstisch_spots",
+    "light.wohnzimmerschrank",
+    "light.vitrinen",
+    "light.kuchenlampe_decke",
+    "light.kuche"
+  ],
+  "stateCache": {
+    "currentState": {
+      "light.schlafzimmer_deckenlampe": {
+        "entity_id": "light.schlafzimmer_deckenlampe",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Schlafzimmer Deckenlampe",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T07:18:40.443418+00:00",
+        "last_reported": "2026-02-21T07:18:40.443418+00:00",
+        "last_updated": "2026-02-21T07:18:40.443418+00:00",
+        "context": {
+          "id": "01KHZH16HV38YNQEED4H0N1BC4",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.steckdose": {
+        "entity_id": "light.steckdose",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "onoff"
+          ],
+          "color_mode": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Steckdose",
+          "supported_features": 0
+        },
+        "last_changed": "2026-02-21T10:09:19.950000+00:00",
+        "last_reported": "2026-02-21T10:09:19.950000+00:00",
+        "last_updated": "2026-02-21T10:09:19.950000+00:00",
+        "context": {
+          "id": "01KHZTSP2EATQ8QBRTPQ86NSNY",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.sideboard": {
+        "entity_id": "light.sideboard",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Sideboard",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T03:06:58.066038+00:00",
+        "last_reported": "2026-02-21T03:06:58.066038+00:00",
+        "last_updated": "2026-02-21T03:06:58.066038+00:00",
+        "context": {
+          "id": "01KHZ2MA4J4GZKDD677XK9THKP",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.bettlampe_ruth": {
+        "entity_id": "light.bettlampe_ruth",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Bettlampe Ruth",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T00:01:39.407211+00:00",
+        "last_reported": "2026-02-21T00:01:39.407211+00:00",
+        "last_updated": "2026-02-21T00:01:39.407211+00:00",
+        "context": {
+          "id": "01KHYR102FC020DGKY13SD639F",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.deckenlampe_lukas": {
+        "entity_id": "light.deckenlampe_lukas",
+        "state": "on",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": "brightness",
+          "brightness": 255,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Deckenlampe Lukas",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T10:09:55.414619+00:00",
+        "last_reported": "2026-02-21T10:09:55.416022+00:00",
+        "last_updated": "2026-02-21T10:09:55.416022+00:00",
+        "context": {
+          "id": "01KHZTTRPRB634JKZ486M12BCC",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.wohnzimmerschrank": {
+        "entity_id": "light.wohnzimmerschrank",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Wohnzimmerschrank",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T03:06:58.063032+00:00",
+        "last_reported": "2026-02-21T03:06:58.063032+00:00",
+        "last_updated": "2026-02-21T03:06:58.063032+00:00",
+        "context": {
+          "id": "01KHZ2MA4F368NVT3T2Q5PPV0H",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.kellerlicht": {
+        "entity_id": "light.kellerlicht",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "onoff"
+          ],
+          "color_mode": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Kellerlicht",
+          "supported_features": 8
+        },
+        "last_changed": "2026-02-15T07:21:27.784053+00:00",
+        "last_reported": "2026-02-15T07:21:27.784053+00:00",
+        "last_updated": "2026-02-15T07:21:27.784053+00:00",
+        "context": {
+          "id": "01KHG2SZZ8AAXVKGXS7HBHP57Z",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.terrasse_schrankseite": {
+        "entity_id": "light.terrasse_schrankseite",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "effect_list": [
+            "off",
+            "candle",
+            "fire",
+            "prism",
+            "sparkle",
+            "opal",
+            "glisten",
+            "underwater",
+            "cosmos",
+            "sunbeam",
+            "enchant",
+            "sunrise",
+            "sunset"
+          ],
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "effect": null,
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Terrasse Schrankseite",
+          "supported_features": 44
+        },
+        "last_changed": "2026-02-14T10:03:33.808068+00:00",
+        "last_reported": "2026-02-14T10:03:33.808068+00:00",
+        "last_updated": "2026-02-14T10:03:33.808068+00:00",
+        "context": {
+          "id": "01KHDSP31GTWS09RGF5KG9MGZM",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.3d_drucker": {
+        "entity_id": "light.3d_drucker",
+        "state": "unavailable",
+        "attributes": {
+          "supported_color_modes": [
+            "onoff"
+          ],
+          "friendly_name": "3d Drucker",
+          "supported_features": 0
+        },
+        "last_changed": "2025-12-28T18:05:05.980636+00:00",
+        "last_reported": "2025-12-28T18:05:05.980636+00:00",
+        "last_updated": "2025-12-28T18:05:05.980636+00:00",
+        "context": {
+          "id": "01KDK25A1WNPT3S27EMKSQZC40",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.terrasse_turseite": {
+        "entity_id": "light.terrasse_turseite",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "effect_list": [
+            "off",
+            "candle",
+            "fire",
+            "prism",
+            "sparkle",
+            "opal",
+            "glisten",
+            "underwater",
+            "cosmos",
+            "sunbeam",
+            "enchant",
+            "sunrise",
+            "sunset"
+          ],
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "effect": null,
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Terrasse Türseite",
+          "supported_features": 44
+        },
+        "last_changed": "2026-02-19T20:44:37.746140+00:00",
+        "last_reported": "2026-02-19T20:44:37.746140+00:00",
+        "last_updated": "2026-02-19T20:44:37.746140+00:00",
+        "context": {
+          "id": "01KHVTBGFJMFTFHZ7M0QVD3GT9",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_spots": {
+        "entity_id": "light.esstisch_spots",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Esstisch Spots",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T23:52:10.028048+00:00",
+        "last_reported": "2026-02-20T23:52:10.028048+00:00",
+        "last_updated": "2026-02-20T23:52:10.028048+00:00",
+        "context": {
+          "id": "01KHYQFM1CEDX9YN0P3AK442WT",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.kuchenlampe_decke": {
+        "entity_id": "light.kuchenlampe_decke",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Küchenlampe Decke",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T21:32:13.155402+00:00",
+        "last_reported": "2026-02-20T21:32:13.155402+00:00",
+        "last_updated": "2026-02-20T21:32:13.155402+00:00",
+        "context": {
+          "id": "01KHYFFBZ39WDX6M3W626NKDX9",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.bettlampe_michael": {
+        "entity_id": "light.bettlampe_michael",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Bettlampe Michael",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T00:01:39.398253+00:00",
+        "last_reported": "2026-02-21T00:01:39.398253+00:00",
+        "last_updated": "2026-02-21T00:01:39.398253+00:00",
+        "context": {
+          "id": "01KHYR1026Y28N60NAVBW14MA5",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.terrassenleuchten": {
+        "entity_id": "light.terrassenleuchten",
+        "state": "on",
+        "attributes": {
+          "min_color_temp_kelvin": 1501,
+          "max_color_temp_kelvin": 8000,
+          "min_mireds": 125,
+          "max_mireds": 666,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": "xy",
+          "brightness": 255,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": [
+            42.09,
+            26.275
+          ],
+          "rgb_color": [
+            255,
+            235,
+            188
+          ],
+          "xy_color": [
+            0.3805,
+            0.3769
+          ],
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Terrassenleuchten",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T09:54:27.891330+00:00",
+        "last_reported": "2026-02-21T09:54:27.891330+00:00",
+        "last_updated": "2026-02-21T09:54:27.891330+00:00",
+        "context": {
+          "id": "01KHZSYEXKTBQCNJTAD055GDDY",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.schreibtisch_lukas": {
+        "entity_id": "light.schreibtisch_lukas",
+        "state": "on",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": "brightness",
+          "brightness": 166,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Schreibtisch Lukas",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T17:55:54.401262+00:00",
+        "last_reported": "2026-02-20T20:30:20.759908+00:00",
+        "last_updated": "2026-02-20T20:30:20.759908+00:00",
+        "context": {
+          "id": "01KHYBXENZN862XV3Z4FGFJNTM",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_indirekt_weiss": {
+        "entity_id": "light.esstisch_indirekt_weiss",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Esstisch indirekt weiß",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T18:06:06.342008+00:00",
+        "last_reported": "2026-02-20T18:06:06.342008+00:00",
+        "last_updated": "2026-02-20T18:06:06.342008+00:00",
+        "context": {
+          "id": "01KHY3NZ06KJD6V7DRTJ5ARTC2",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_indirekt_weiss_2": {
+        "entity_id": "light.esstisch_indirekt_weiss_2",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Esstisch indirekt rgb",
+          "supported_features": 40
+        },
+        "last_changed": "2026-01-13T10:40:43.561734+00:00",
+        "last_reported": "2026-01-16T13:58:49.179757+00:00",
+        "last_updated": "2026-01-16T13:58:49.178966+00:00",
+        "context": {
+          "id": "01KF3HM0JTG3DYCR3MHYQFS19E",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.wohnzimmer_lichtschalter": {
+        "entity_id": "light.wohnzimmer_lichtschalter",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "onoff"
+          ],
+          "color_mode": null,
+          "mode": "normal",
+          "dynamics": "none",
+          "friendly_name": "Wohnzimmer Lichtschalter",
+          "supported_features": 0
+        },
+        "last_changed": "2026-02-21T03:06:58.064737+00:00",
+        "last_reported": "2026-02-21T03:06:58.064737+00:00",
+        "last_updated": "2026-02-21T03:06:58.064737+00:00",
+        "context": {
+          "id": "01KHZ2MA4G0QNVVCGWQ21ECYQ2",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_spots_2": {
+        "entity_id": "light.esstisch_spots_2",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Esstisch Spots"
+          ],
+          "entity_id": [
+            "light.esstisch_spots"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Esstisch Spots",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T23:52:11.046419+00:00",
+        "last_reported": "2026-02-20T23:52:11.046419+00:00",
+        "last_updated": "2026-02-20T23:52:11.046419+00:00",
+        "context": {
+          "id": "01KHYQFN16W8W59HG0F8X18VYN",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.terrasse": {
+        "entity_id": "light.terrasse",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [
+            "Konzentrieren",
+            "Energie tanken",
+            "Entspannen",
+            "Lesen",
+            "Nachtlicht"
+          ],
+          "hue_type": "room",
+          "lights": [
+            "Terrasse Türseite",
+            "Terrasse Schrankseite"
+          ],
+          "entity_id": [
+            "light.terrasse_schrankseite",
+            "light.terrasse_turseite"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Terrasse",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-08T19:29:55.564369+00:00",
+        "last_reported": "2026-02-08T19:29:55.564369+00:00",
+        "last_updated": "2026-02-08T19:29:55.564369+00:00",
+        "context": {
+          "id": "01KGZBPTBCVG98HFNVHVFK2ZXM",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_indirekt_rgb": {
+        "entity_id": "light.esstisch_indirekt_rgb",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Esstisch indirekt rgb"
+          ],
+          "entity_id": [
+            "light.esstisch_indirekt_weiss_2"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Esstisch indirekt rgb",
+          "supported_features": 40
+        },
+        "last_changed": "2025-12-29T18:36:38.632773+00:00",
+        "last_reported": "2025-12-29T18:36:38.632773+00:00",
+        "last_updated": "2025-12-29T18:36:38.632773+00:00",
+        "context": {
+          "id": "01KDNPBSB83PT57G1ZHSFS4M2H",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.schlafzimmer": {
+        "entity_id": "light.schlafzimmer",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "zone",
+          "lights": [
+            "Bettlampe Ruth",
+            "Schlafzimmer Deckenlampe",
+            "Bettlampe Michael"
+          ],
+          "entity_id": [
+            "light.bettlampe_michael",
+            "light.bettlampe_ruth",
+            "light.schlafzimmer_deckenlampe"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Schlafzimmer",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T07:18:41.467780+00:00",
+        "last_reported": "2026-02-21T07:18:41.467780+00:00",
+        "last_updated": "2026-02-21T07:18:41.467780+00:00",
+        "context": {
+          "id": "01KHZH17HVRJ3C7C5VNWAVHHGY",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.terrasse_automatik": {
+        "entity_id": "light.terrasse_automatik",
+        "state": "on",
+        "attributes": {
+          "min_color_temp_kelvin": 1501,
+          "max_color_temp_kelvin": 8000,
+          "min_mireds": 125,
+          "max_mireds": 666,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": "xy",
+          "brightness": 255,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": [
+            42.09,
+            26.275
+          ],
+          "rgb_color": [
+            255,
+            235,
+            188
+          ],
+          "xy_color": [
+            0.3805,
+            0.3769
+          ],
+          "is_hue_group": true,
+          "hue_scenes": [
+            "Nachtlicht"
+          ],
+          "hue_type": "room",
+          "lights": [
+            "Terrassenleuchten",
+            "Steckdose"
+          ],
+          "entity_id": [
+            "light.terrassenleuchten",
+            "light.steckdose"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Terrasse Automatik",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-06T15:42:01.221810+00:00",
+        "last_reported": "2026-02-06T16:29:58.815691+00:00",
+        "last_updated": "2026-02-06T16:29:58.815691+00:00",
+        "context": {
+          "id": "01KGSWKWMZYWTQ61XE4QCRAK1V",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.bettlampe_michael_2": {
+        "entity_id": "light.bettlampe_michael_2",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Bettlampe Michael"
+          ],
+          "entity_id": [
+            "light.bettlampe_michael"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Bettlampe Michael",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T00:01:39.404470+00:00",
+        "last_reported": "2026-02-21T00:01:39.404470+00:00",
+        "last_updated": "2026-02-21T00:01:39.404470+00:00",
+        "context": {
+          "id": "01KHYR102CSH7BHXNZSF5PQJQ2",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.keller": {
+        "entity_id": "light.keller",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "onoff"
+          ],
+          "color_mode": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Kellerlicht",
+            "3d Drucker"
+          ],
+          "entity_id": [
+            "light.kellerlicht",
+            "light.3d_drucker"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Keller",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-15T07:21:28.797106+00:00",
+        "last_reported": "2026-02-15T07:21:28.797106+00:00",
+        "last_updated": "2026-02-15T07:21:28.797106+00:00",
+        "context": {
+          "id": "01KHG2T0YXC9YN49MP774MWF04",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.wohnzimmer": {
+        "entity_id": "light.wohnzimmer",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2000,
+          "max_color_temp_kelvin": 6535,
+          "min_mireds": 153,
+          "max_mireds": 500,
+          "supported_color_modes": [
+            "color_temp",
+            "xy"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "zone",
+          "lights": [
+            "Sideboard",
+            "Esstisch Spots",
+            "Esstisch indirekt rgb",
+            "Esstisch indirekt weiß"
+          ],
+          "entity_id": [
+            "light.esstisch_spots",
+            "light.esstisch_indirekt_weiss",
+            "light.esstisch_indirekt_weiss_2",
+            "light.sideboard"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Wohnzimmer",
+          "supported_features": 40
+        },
+        "last_changed": "2026-01-15T23:22:42.504282+00:00",
+        "last_reported": "2026-01-15T23:22:42.504282+00:00",
+        "last_updated": "2026-01-15T23:22:42.504282+00:00",
+        "context": {
+          "id": "01KF1ZFSY8DAH6XRMMBGWE1W3J",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.esstisch_indirekt_weiss_3": {
+        "entity_id": "light.esstisch_indirekt_weiss_3",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Esstisch indirekt weiß"
+          ],
+          "entity_id": [
+            "light.esstisch_indirekt_weiss"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Esstisch indirekt weiß",
+          "supported_features": 40
+        },
+        "last_changed": "2025-12-29T18:36:30.851305+00:00",
+        "last_reported": "2025-12-29T18:36:30.851305+00:00",
+        "last_updated": "2025-12-29T18:36:30.851305+00:00",
+        "context": {
+          "id": "01KDNPBHR3W5XRWZHTH611GG6C",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.bettlampe_ruth_2": {
+        "entity_id": "light.bettlampe_ruth_2",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Bettlampe Ruth"
+          ],
+          "entity_id": [
+            "light.bettlampe_ruth"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Bettlampe Ruth",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T00:01:39.409455+00:00",
+        "last_reported": "2026-02-21T00:01:39.409455+00:00",
+        "last_updated": "2026-02-21T00:01:39.409455+00:00",
+        "context": {
+          "id": "01KHYR102H4K0WDJBA29K0WBD3",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.vitrinen": {
+        "entity_id": "light.vitrinen",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Sideboard",
+            "Wohnzimmer Lichtschalter",
+            "Wohnzimmerschrank"
+          ],
+          "entity_id": [
+            "light.wohnzimmer_lichtschalter",
+            "light.wohnzimmerschrank",
+            "light.sideboard"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Vitrinen",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T03:06:59.085541+00:00",
+        "last_reported": "2026-02-21T03:06:59.085541+00:00",
+        "last_updated": "2026-02-21T03:06:59.085541+00:00",
+        "context": {
+          "id": "01KHZ2MB4DDGW8SHM0X1SRHYDE",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.schlafzimmer_deckenlampe_2": {
+        "entity_id": "light.schlafzimmer_deckenlampe_2",
+        "state": "off",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Schlafzimmer Deckenlampe"
+          ],
+          "entity_id": [
+            "light.schlafzimmer_deckenlampe"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Schlafzimmer Deckenlampe",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T07:18:41.469051+00:00",
+        "last_reported": "2026-02-21T07:18:41.469051+00:00",
+        "last_updated": "2026-02-21T07:18:41.469051+00:00",
+        "context": {
+          "id": "01KHZH17HX1GEMFB7Y3ZAXTRBB",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.kuche": {
+        "entity_id": "light.kuche",
+        "state": "off",
+        "attributes": {
+          "min_color_temp_kelvin": 2202,
+          "max_color_temp_kelvin": 4000,
+          "min_mireds": 250,
+          "max_mireds": 454,
+          "supported_color_modes": [
+            "color_temp"
+          ],
+          "color_mode": null,
+          "brightness": null,
+          "color_temp_kelvin": null,
+          "color_temp": null,
+          "hs_color": null,
+          "rgb_color": null,
+          "xy_color": null,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Küchenlampe Decke"
+          ],
+          "entity_id": [
+            "light.kuchenlampe_decke"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Küche",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-20T21:32:13.157924+00:00",
+        "last_reported": "2026-02-20T21:32:13.157924+00:00",
+        "last_updated": "2026-02-20T21:32:13.157924+00:00",
+        "context": {
+          "id": "01KHYFFBZ5YP9RJVCS5NXNJ6JK",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.deckenlampe_lukas_2": {
+        "entity_id": "light.deckenlampe_lukas_2",
+        "state": "on",
+        "attributes": {
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "color_mode": "brightness",
+          "brightness": 255,
+          "is_hue_group": true,
+          "hue_scenes": [],
+          "hue_type": "room",
+          "lights": [
+            "Deckenlampe Lukas"
+          ],
+          "entity_id": [
+            "light.deckenlampe_lukas"
+          ],
+          "dynamics": false,
+          "icon": "mdi:lightbulb-group",
+          "friendly_name": "Deckenlampe Lukas",
+          "supported_features": 40
+        },
+        "last_changed": "2026-02-21T10:09:56.431810+00:00",
+        "last_reported": "2026-02-21T10:09:56.431810+00:00",
+        "last_updated": "2026-02-21T10:09:56.431810+00:00",
+        "context": {
+          "id": "01KHZTTSPF9RQHEHVDBDBWPMP7",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.lukas_desktop_app_screen": {
+        "entity_id": "light.lukas_desktop_app_screen",
+        "state": "unavailable",
+        "attributes": {
+          "restored": true,
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "friendly_name": "Screen",
+          "supported_features": 0
+        },
+        "last_changed": "2025-12-28T18:05:16.140616+00:00",
+        "last_reported": "2025-12-28T18:05:16.140616+00:00",
+        "last_updated": "2025-12-28T18:05:16.140616+00:00",
+        "context": {
+          "id": "01KDK25KZCP7PS4F9HX2911BWS",
+          "parent_id": null,
+          "user_id": null
+        }
+      },
+      "light.lukas_desktop_browser_screen": {
+        "entity_id": "light.lukas_desktop_browser_screen",
+        "state": "unavailable",
+        "attributes": {
+          "restored": true,
+          "supported_color_modes": [
+            "brightness"
+          ],
+          "friendly_name": "Screen",
+          "supported_features": 0
+        },
+        "last_changed": "2025-12-28T18:05:16.141425+00:00",
+        "last_reported": "2025-12-28T18:05:16.141425+00:00",
+        "last_updated": "2025-12-28T18:05:16.141425+00:00",
+        "context": {
+          "id": "01KDK25KZDHJ46SCCK4QW3FVHF",
+          "parent_id": null,
+          "user_id": null
+        }
+      }
+    },
+    "allLights": [
+      {
+        "entity_id": "light.schlafzimmer_deckenlampe",
+        "friendly_name": "Schlafzimmer Deckenlampe",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.steckdose",
+        "friendly_name": "Steckdose",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.sideboard",
+        "friendly_name": "Sideboard",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.bettlampe_ruth",
+        "friendly_name": "Bettlampe Ruth",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.deckenlampe_lukas",
+        "friendly_name": "Deckenlampe Lukas",
+        "state": "on",
+        "brightness": 255
+      },
+      {
+        "entity_id": "light.wohnzimmerschrank",
+        "friendly_name": "Wohnzimmerschrank",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.kellerlicht",
+        "friendly_name": "Kellerlicht",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.terrasse_schrankseite",
+        "friendly_name": "Terrasse Schrankseite",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.3d_drucker",
+        "friendly_name": "3d Drucker",
+        "state": "unavailable",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.terrasse_turseite",
+        "friendly_name": "Terrasse Türseite",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.esstisch_spots",
+        "friendly_name": "Esstisch Spots",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.kuchenlampe_decke",
+        "friendly_name": "Küchenlampe Decke",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.bettlampe_michael",
+        "friendly_name": "Bettlampe Michael",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.terrassenleuchten",
+        "friendly_name": "Terrassenleuchten",
+        "state": "on",
+        "brightness": 255
+      },
+      {
+        "entity_id": "light.schreibtisch_lukas",
+        "friendly_name": "Schreibtisch Lukas",
+        "state": "on",
+        "brightness": 166
+      },
+      {
+        "entity_id": "light.esstisch_indirekt_weiss",
+        "friendly_name": "Esstisch indirekt weiß",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.esstisch_indirekt_weiss_2",
+        "friendly_name": "Esstisch indirekt rgb",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.wohnzimmer_lichtschalter",
+        "friendly_name": "Wohnzimmer Lichtschalter",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.esstisch_spots_2",
+        "friendly_name": "Esstisch Spots",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.terrasse",
+        "friendly_name": "Terrasse",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.esstisch_indirekt_rgb",
+        "friendly_name": "Esstisch indirekt rgb",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.schlafzimmer",
+        "friendly_name": "Schlafzimmer",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.terrasse_automatik",
+        "friendly_name": "Terrasse Automatik",
+        "state": "on",
+        "brightness": 255
+      },
+      {
+        "entity_id": "light.bettlampe_michael_2",
+        "friendly_name": "Bettlampe Michael",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.keller",
+        "friendly_name": "Keller",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.wohnzimmer",
+        "friendly_name": "Wohnzimmer",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.esstisch_indirekt_weiss_3",
+        "friendly_name": "Esstisch indirekt weiß",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.bettlampe_ruth_2",
+        "friendly_name": "Bettlampe Ruth",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.vitrinen",
+        "friendly_name": "Vitrinen",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.schlafzimmer_deckenlampe_2",
+        "friendly_name": "Schlafzimmer Deckenlampe",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.kuche",
+        "friendly_name": "Küche",
+        "state": "off",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.deckenlampe_lukas_2",
+        "friendly_name": "Deckenlampe Lukas",
+        "state": "on",
+        "brightness": 255
+      },
+      {
+        "entity_id": "light.lukas_desktop_app_screen",
+        "friendly_name": "Screen",
+        "state": "unavailable",
+        "brightness": 0
+      },
+      {
+        "entity_id": "light.lukas_desktop_browser_screen",
+        "friendly_name": "Screen",
+        "state": "unavailable",
+        "brightness": 0
+      }
+    ],
+    "selectedLight": "light.schlafzimmer_deckenlampe",
+    "timestamp": 1771670323260
+  }
+}

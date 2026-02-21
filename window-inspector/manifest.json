@@ -1,0 +1,29 @@
+{
+  "id": "window-inspector",
+  "name": "Window Inspector",
+  "version": "0.1.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "stonelukas",
+  "license": "MIT",
+  "description": "Inspect active window with live preview and detailed properties (Hyprland only)",
+  "entryPoints": {
+    "main": "Main.qml",
+    "panel": "Panel.qml",
+    "barWidget": "BarWidget.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "showIcon": true,
+      "maxWidth": 200,
+      "scrollingMode": "hover",
+      "hideWhenNoWindow": true,
+      "showPreview": true,
+      "showActions": true,
+      "previewHeight": 280
+    }
+  }
+}
