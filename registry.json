@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "plugins": [
+    {
+      "id": "arctis",
+      "name": "Arctis Headset",
+      "version": "0.1.0",
+      "author": "Stonelukas",
+      "description": "Monitor SteelSeries Arctis headset status via arctis-manager",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "custom-polkit-agent",
+      "name": "Polkit Authentication (Custom)",
+      "version": "1.0.0",
+      "author": "Stonelukas",
+      "description": "Custom system authentication dialog using Quickshell.Services.Polkit (no daemon needed).",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "homeassistant-lights",
+      "name": "Home Assistant Lights",
+      "version": "0.1.0",
+      "author": "Stonelukas",
+      "description": "Control Home Assistant lights from your desktop",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "kdeconnect",
+      "name": "KDE Connect",
+      "version": "0.1.0",
+      "author": "Stonelukas",
+      "description": "Show connected phone battery and quick actions via KDE Connect",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "music-recognizer",
+      "name": "Music Recognizer",
+      "version": "1.0.0",
+      "author": "Stonelukas",
+      "description": "Identify songs playing in system audio using Shazam",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "omarchy",
+      "name": "Omarchy Integration",
+      "version": "0.1.1",
+      "author": "Stonelukas",
+      "description": "Sync Noctalia colors from Omarchy themes.",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "openrazer",
+      "name": "OpenRazer",
+      "version": "0.1.0",
+      "author": "Stonelukas",
+      "description": "Monitor and control Razer devices via OpenRazer",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    },
+    {
+      "id": "window-inspector",
+      "name": "Window Inspector",
+      "version": "0.1.0",
+      "author": "Stonelukas",
+      "description": "Inspect active window with live preview and detailed properties (Hyprland only)",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-02-21T12:00:00Z"
+    }
+  ]
+}
