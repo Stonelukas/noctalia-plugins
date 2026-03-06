@@ -99,13 +99,15 @@ Item {
 
   function scanThemes() {
     // Strip section headers (── ... ──), blank lines, and the "current:" footer
-    themesProcess.command = ["sh", "-c", "theme-ctl list 2>/dev/null | grep -v '^[[:space:]]*$' | grep -v '^──' | grep -v '^[[:space:]]*current:' | sort"];
+    const themeCtl = (Quickshell.env("HOME") || "") + "/.config/scripts/bin/theme-ctl";
+    themesProcess.command = ["sh", "-c", "'" + themeCtl + "' list 2>/dev/null | grep -v '^[[:space:]]*$' | grep -v '^──' | grep -v '^[[:space:]]*current:' | sort"];
     themesProcess.running = true;
   }
 
   function setTheme(name) {
     if (!name) return;
-    themeSetProcess.command = ["sh", "-c", "theme-ctl set '" + name.replace(/'/g, "'\\''") + "'"];
+    const themeCtl = (Quickshell.env("HOME") || "") + "/.config/scripts/bin/theme-ctl";
+    themeSetProcess.command = ["sh", "-c", "'" + themeCtl + "' set '" + name.replace(/'/g, "'\\''") + "'"];
     themeSetProcess.running = true;
   }
 
