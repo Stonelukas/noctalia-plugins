@@ -2,6 +2,17 @@
   "version": 1,
   "plugins": [
     {
+      "id": "theme-ctl",
+      "name": "Theme-ctl Integration",
+      "version": "1.0.0",
+      "author": "Stonelukas",
+      "description": "Sync Noctalia colors from theme-ctl themes. Replaces the omarchy plugin.",
+      "repository": "https://github.com/Stonelukas/noctalia-plugins/",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "lastUpdated": "2026-03-06T20:00:00Z"
+    },
+    {
       "id": "arctis",
       "name": "Arctis Headset",
       "version": "0.1.0",
