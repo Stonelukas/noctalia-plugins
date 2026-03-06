@@ -18,6 +18,7 @@ Item {
   property bool available: false
   property bool applying: false
   property string themeName: ""
+  property var availableThemes: []
   property bool suppressSettingsSignal: false
   property var pendingColors: null
 
@@ -93,6 +94,18 @@ Item {
   function refresh() {
     checkAvailability();
     refreshThemeName();
+    scanThemes();
+  }
+
+  function scanThemes() {
+    themesProcess.command = ["sh", "-c", "theme-ctl list 2>/dev/null | sort"];
+    themesProcess.running = true;
+  }
+
+  function setTheme(name) {
+    if (!name) return;
+    themeSetProcess.command = ["sh", "-c", "theme-ctl set '" + name.replace(/'/g, "'\\''") + "'"];
+    themeSetProcess.running = true;
   }
 
   function checkAvailability() {
@@ -254,6 +267,30 @@ Item {
       }
       Logger.i("ThemeCtl", "Scheme written to:", schemeOutputPath);
       applyDelayTimer.start();
+    }
+  }
+
+  Process {
+    id: themesProcess
+    running: false
+    stdout: StdioCollector {}
+    onExited: function(code) {
+      if (code !== 0) { availableThemes = []; return; }
+      const names = (stdout.text || "").trim().split("\n").filter(n => n.trim());
+      availableThemes = names.map(n => ({ "name": n, "colors": [] }));
+    }
+  }
+
+  Process {
+    id: themeSetProcess
+    running: false
+    onExited: function(code) {
+      if (code !== 0) {
+        ToastService.showError(pluginApi?.tr("title") || "Theme-ctl", "Failed to switch theme");
+        return;
+      }
+      refreshThemeName();
+      if (pluginApi?.pluginSettings?.active) Qt.callLater(applyCurrentTheme);
     }
   }
 
