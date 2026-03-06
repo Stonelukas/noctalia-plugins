@@ -1,0 +1,41 @@
+{
+  "title": "Theme-ctl",
+  "status": {
+    "available": "theme-ctl active",
+    "not-available": "theme-ctl cache not found",
+    "active": "Active",
+    "inactive": "Inactive",
+    "applying": "Applying…"
+  },
+  "actions": {
+    "refresh": "Refresh",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "apply": "Re-apply",
+    "cycle": "Cycle theme",
+    "random": "Random theme"
+  },
+  "fields": {
+    "show-theme-name": {
+      "label": "Show theme name in bar widget",
+      "desc": "If disabled, only the palette icon is shown in the bar."
+    }
+  },
+  "tooltips": {
+    "inactive": "Theme-ctl (inactive)\nClick to open settings",
+    "not-available": "theme-ctl cache not found\nRun: theme-ctl set <name>",
+    "widget-settings": "Widget settings",
+    "random-theme": "Random theme",
+    "close": "Close"
+  },
+  "errors": {
+    "missing-config": "theme-ctl cache not found",
+    "failed-read": "Failed to read colors.toml",
+    "failed-apply": "Failed to apply scheme",
+    "failed-theme-set": "Failed to switch theme",
+    "no-themes": "No themes found"
+  },
+  "panel": {
+    "settings-hint": "Switch themes with Super+Ctrl+T or run: theme-ctl set <name>"
+  }
+}

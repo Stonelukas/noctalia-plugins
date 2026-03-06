@@ -98,7 +98,8 @@ Item {
   }
 
   function scanThemes() {
-    themesProcess.command = ["sh", "-c", "theme-ctl list 2>/dev/null | sort"];
+    // Strip section headers (── ... ──), blank lines, and the "current:" footer
+    themesProcess.command = ["sh", "-c", "theme-ctl list 2>/dev/null | grep -v '^[[:space:]]*$' | grep -v '^──' | grep -v '^[[:space:]]*current:' | sort"];
     themesProcess.running = true;
   }
 
