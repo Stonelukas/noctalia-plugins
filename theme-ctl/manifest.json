@@ -1,7 +1,7 @@
 {
   "id": "theme-ctl",
   "name": "Theme-ctl Integration",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "stonelukas",
   "description": "Sync Noctalia colors from theme-ctl themes.",
   "entryPoints": {
