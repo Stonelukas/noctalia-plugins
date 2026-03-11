@@ -220,14 +220,20 @@ Item {
   Process {
     id: availabilityProcess
     running: false
-    onExited: code => { available = (code === 0); }
+    stdout: StdioCollector {}
+    onExited: function(code) {
+      available = (code === 0);
+      if (available && pluginApi?.pluginSettings?.active) {
+        Qt.callLater(applyCurrentTheme);
+      }
+    }
   }
 
   Process {
     id: themeNameProcess
     running: false
     stdout: StdioCollector {}
-    onExited: function() {
+    onExited: function(code) {
       const name = (stdout.text || "").trim();
       themeName = name;
     }
@@ -374,9 +380,8 @@ Item {
   // ── lifecycle ─────────────────────────────────────────────────────────────
   Component.onCompleted: {
     refresh();
-    if (pluginApi?.pluginSettings?.active) {
-      Qt.callLater(applyCurrentTheme);
-    }
+    // applyCurrentTheme is triggered from availabilityProcess.onExited once
+    // availability is confirmed — calling it here races the async check.
   }
 
   Connections {
