@@ -29,7 +29,6 @@ Item {
   readonly property string scriptPath: pluginApi?.pluginDir
     ? pluginApi.pluginDir + "/scripts/recognize.py"
     : ""
-  readonly property string venvPython: Quickshell.env("HOME") + "/.local/share/noctalia/plugins/music-recognizer/venv/bin/python"
   readonly property string historyDir: Settings.configDir + "/plugins/music-recognizer"
   readonly property string historyPath: historyDir + "/history.json"
 
@@ -137,7 +136,7 @@ Item {
     id: recognizeProcess
     running: false
 
-    command: ["sh", "-c", "'" + root.venvPython + "' '" + root.scriptPath + "' --duration " + root.recordDuration + " && echo"]
+    command: ["python3", root.scriptPath, "--duration", String(root.recordDuration)]
 
     stdout: SplitParser {
       onRead: data => {

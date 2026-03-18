@@ -59,13 +59,13 @@
     {
       "id": "music-recognizer",
       "name": "Music Recognizer",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "Stonelukas",
       "description": "Identify songs playing in system audio using Shazam",
       "repository": "https://github.com/Stonelukas/noctalia-plugins/",
-      "minNoctaliaVersion": "3.6.0",
+      "minNoctaliaVersion": "3.7.5",
       "license": "MIT",
-      "lastUpdated": "2026-02-21T12:00:00Z"
+      "lastUpdated": "2026-03-18T12:00:00Z"
     },
     {
       "id": "omarchy",

@@ -23,8 +23,15 @@ import sys
 import tempfile
 from pathlib import Path
 
-VENV_DIR = Path.home() / ".local/share/noctalia/plugins/music-recognizer/venv"
+VENV_BASE_DIR = Path.home() / ".local/share/noctalia/plugins/music-recognizer"
 REQUIRED_PYTHON = (3, 10)
+MAX_SAFE_PYTHON = (3, 13)
+FALLBACK_PYTHONS = ("python3.13", "python3.12", "python3.11", "python3.10")
+
+
+def get_venv_dir(python_version: tuple[int, int]) -> Path:
+    """Use a version-specific venv to avoid reusing incompatible compiled wheels."""
+    return VENV_BASE_DIR / f"venv-py{python_version[0]}.{python_version[1]}"
 
 
 def send_notification(title: str, message: str, urgency: str = "normal") -> None:
@@ -67,16 +74,54 @@ def check_pipewire() -> None:
         output_error("no_pipewire", "pw-record not found. Install pipewire-audio-client-libraries")
 
 
+def ensure_supported_interpreter() -> None:
+    """Re-exec with a compatible Python when the current one is too new for shazamio_core."""
+    current_version = sys.version_info[:2]
+    if current_version <= MAX_SAFE_PYTHON:
+        return
+
+    for candidate in FALLBACK_PYTHONS:
+        candidate_path = shutil.which(candidate)
+        if not candidate_path:
+            continue
+
+        try:
+            probe = subprocess.run(
+                [candidate_path, "-c", "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"],
+                capture_output=True,
+                text=True,
+                timeout=5,
+                check=True,
+            )
+            major, minor = map(int, probe.stdout.strip().split("."))
+        except Exception:
+            continue
+
+        if (major, minor) < REQUIRED_PYTHON or (major, minor) > MAX_SAFE_PYTHON:
+            continue
+
+        os.execv(candidate_path, [candidate_path, __file__, *sys.argv[1:]])
+
+    output_error(
+        "unsupported_python",
+        f"Python {sys.version_info.major}.{sys.version_info.minor} is too new for the bundled recognition stack. Install Python 3.10-3.13.",
+    )
+
+
 def ensure_venv() -> Path:
-    """Create venv and install shazamio if needed. Returns python path."""
-    venv_python = VENV_DIR / "bin" / "python"
+    """Create a version-specific venv and install compatible dependencies."""
+    python_version = sys.version_info[:2]
+    venv_dir = get_venv_dir(python_version)
+    venv_python = venv_dir / "bin" / "python"
 
     if not venv_python.exists():
-        VENV_DIR.mkdir(parents=True, exist_ok=True)
-        subprocess.run([sys.executable, "-m", "venv", str(VENV_DIR)], check=True)
-        # Install shazamio + audioop-lts (needed for Python 3.13+)
+        venv_dir.mkdir(parents=True, exist_ok=True)
+        subprocess.run([sys.executable, "-m", "venv", str(venv_dir)], check=True)
+        packages = ["shazamio"]
+        if python_version >= (3, 13):
+            packages.append("audioop-lts")
         subprocess.run(
-            [str(venv_python), "-m", "pip", "install", "--quiet", "shazamio", "audioop-lts"],
+            [str(venv_python), "-m", "pip", "install", "--quiet", *packages],
             check=True
         )
 
@@ -188,6 +233,7 @@ def main():
 
     # Pre-flight checks
     check_python_version()
+    ensure_supported_interpreter()
     check_pipewire()
 
     # Ensure venv with shazamio
@@ -196,8 +242,9 @@ def main():
     except Exception as e:
         output_error("recognition_failed", f"Failed to setup venv: {e}")
 
-    # If running from system Python, re-exec with venv Python
-    if not str(sys.executable).startswith(str(VENV_DIR)):
+    # If not already running inside the matching venv, re-exec with its Python
+    venv_dir = venv_python.parent.parent
+    if Path(sys.prefix).resolve() != venv_dir.resolve():
         os.execv(str(venv_python), [str(venv_python), __file__, "--duration", str(args.duration)])
 
     # Capture audio
